@@ -133,7 +133,7 @@ Example did not properly validate that
         end
 
         expect(&assertion).to raise_error(
-          Shoulda::Matchers::ActiveModel::AttributeSetter::AttributeChangedValueError
+          Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeChangedValueError
         )
       end
     end
