@@ -8,7 +8,7 @@ module Shoulda
             new(args).set
           end
 
-          attr_reader :result_of_checking, :result_of_setting
+          attr_reader :attribute_name, :result_of_checking, :result_of_setting
 
           def initialize(args)
             @matcher_name = args.fetch(:matcher_name)
@@ -124,9 +124,13 @@ module Shoulda
             set? && result_of_setting.successful?
           end
 
+          def attribute_changed_value?
+            value_written != value_read
+          end
+
           protected
 
-          attr_reader :matcher_name, :object, :attribute_name, :value_written,
+          attr_reader :matcher_name, :object, :value_written,
             :after_set_callback
 
           private
@@ -137,10 +141,6 @@ module Shoulda
 
           def attribute_exists?
             object.respond_to?("#{attribute_name}=")
-          end
-
-          def attribute_changed_value?
-            value_written != value_read
           end
 
           def value_read
