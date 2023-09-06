@@ -210,10 +210,11 @@ module Shoulda
           message = super
 
           if should_add_footnote_about_belongs_to?
+            blank_error = RailsShim.simply_generate_validation_message(nil, :blank, nil, nil)
             message << "\n\n"
             message << Shoulda::Matchers.word_wrap(<<-MESSAGE.strip, indent: 2)
 You're getting this error because #{reason_for_existing_presence_validation}.
-*This* presence validation doesn't use "can't be blank", the usual validation
+*This* presence validation doesn't use "#{blank_error}", the usual validation
 message, but "must exist" instead.
 
 With that said, did you know that the `belong_to` matcher can test this

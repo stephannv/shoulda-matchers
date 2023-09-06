@@ -83,6 +83,7 @@ module UnitTests
       write_activerecord_model_with_different_connection
 
       add_initializer_for_time_zone_aware_types
+      add_initializer_for_default_serializer
     end
 
     def rails_new
@@ -162,6 +163,15 @@ end
       fs.write(path, <<-TEXT)
 Rails.application.configure do
   config.active_record.time_zone_aware_types = [:datetime, :time]
+end
+      TEXT
+    end
+
+    def add_initializer_for_default_serializer
+      path = 'config/initializers/default_serializer.rb'
+      fs.write(path, <<-TEXT)
+Rails.application.configure do
+  config.active_record.default_column_serializer = JSON
 end
       TEXT
     end

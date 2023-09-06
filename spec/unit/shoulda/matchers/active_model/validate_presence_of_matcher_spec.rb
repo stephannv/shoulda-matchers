@@ -50,7 +50,7 @@ this could not be proved.
   After setting :attr to ‹nil›, the matcher expected the Example to be
   valid, but it was invalid instead, producing these validation errors:
 
-  * attr: ["can't be blank"]
+  * attr: ["#{RailsShim.generate_validation_message(nil, nil, :blank, nil, nil)}"]
       MESSAGE
 
       expect(&assertion).to fail_with_message(message)

@@ -609,7 +609,7 @@ After setting :name to ‹"anything"› -- which was read back as ‹nil› --
 the matcher expected the Example to be valid, but it was invalid
 instead, producing these validation errors:
 
-* name: ["can't be blank"]
+* name: ["#{Shoulda::Matchers::RailsShim.generate_validation_message(nil, nil, :blank, nil, {})}"]
 
 As indicated in the message above, :name seems to be changing certain
 values as they are set, and this could have something to do with why
